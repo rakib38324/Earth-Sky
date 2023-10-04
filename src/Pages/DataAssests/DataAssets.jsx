@@ -262,7 +262,7 @@ const DataAssets = () => {
 
                                                         </div>)
                                                 }
-                                                <div onClick={() => handleDownload(dateWithData.near_earth_objects?.[`${buttonDate}`], `${buttonDate} Asteroids - NeoWs.json`)} className='flex justify-center'>
+                                                <div onClick={() => handleDownload(dateWithData.near_earth_objects?.[`${buttonDate}`], `${buttonDate} Asteroids - NeoWs`)} className='flex justify-center'>
                                                     <button className='p-2 px-4 font-semibold hover:bg-green-400 bg-blue-300 text-lg my-10 rounded-lg'>Download All Data {startDate} to {endDate}</button>
                                                 </div>
                                             </div>
