@@ -10,7 +10,7 @@ const Navbar = ({ setDrawer }) => {
 
    
     return (
-        <div className="navbar bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-40% to-emerald-500 to-80% relative">
+        <div className="navbar bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-40% to-emerald-500 to-80% relative ">
             <div className="flex-1">
                 <label htmlFor="my-drawer" className="">
                     <FaRegArrowAltCircleRight onMouseEnter={() => setDrawer(true)} className="cursor-pointer rounded-full text-5xl "></FaRegArrowAltCircleRight>
