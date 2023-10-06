@@ -14,7 +14,7 @@ const LogIn = () => {
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || "/";
 
-    const [signUpError, setSignUPError] = useState("");
+    const [logIn, setLogInError] = useState("");
 
 
 
@@ -24,7 +24,7 @@ const LogIn = () => {
         // console.log(data);
         setLoading(true);
 
-        setSignUPError("");
+        setLogInError("");
         signIn(data.email, data.password)
             .then((result) => {
                 const user = result.user;
@@ -36,7 +36,7 @@ const LogIn = () => {
             .catch((error) => {
                 console.log(error);
                 setLoading(false);
-                setSignUPError(error.message);
+                setLogInError(error.message);
             });
     };
 
@@ -76,7 +76,7 @@ const LogIn = () => {
 
                 <div className="lg:w-96 mx-auto bg-white p-7 my-10 opacity-90 rounded-3xl">
                     <h2 className="text-2xl text-black font-semibold text-center">
-                        Please put your information
+                        Welcome Back...
                     </h2>
                     <form className="w-full mx-auto" onSubmit={handleSubmit(handleLogIn)}>
                         
@@ -133,11 +133,11 @@ const LogIn = () => {
                         <div className="text-center my-5">
                             <button className="btn btn-primary bg-gradient-to-r from-blue-600 to-violet-600 hover:bg-gradient-to-r  hover:from-violet-600 hover:to-blue-600 text-white w-full mt-2 ">
                                 {" "}
-                                {loading ? <SmallLoading></SmallLoading> : "Sign Up"}{" "}
+                                {loading ? <SmallLoading></SmallLoading> : "LogIn"}{" "}
                             </button>
 
                             <div>
-                                {signUpError && <p className="text-red-600">{signUpError}</p>}
+                                {logIn && <p className="text-red-600">{logIn}</p>}
                             </div>
                         </div>
 
@@ -156,7 +156,7 @@ const LogIn = () => {
                         onClick={handleSignUpnWithGoogle}
                         className="btn btn-primary bg-gradient-to-r from-blue-600 to-violet-600 hover:bg-gradient-to-r  hover:from-violet-600 hover:to-blue-600 text-white w-full "
                     >
-                        {loading ? <SmallLoading></SmallLoading> : "SIGN UP WITH GOOGLE"}
+                        {loading ? <SmallLoading></SmallLoading> : "LOGIN WITH GOOGLE"}
                     </button>
                 </div>
 

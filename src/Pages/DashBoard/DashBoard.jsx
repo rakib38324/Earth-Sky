@@ -14,7 +14,8 @@ const DashBoard = () => {
   const [count, setCount] = useState(0);
   const [imgUrl, setImgUrl] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
-  const [submittedDate, setSubmittedDate] = useState('2023-10-01');
+  const [submittedDate, setSubmittedDate] = useState('2022-10-01');
+  const [defaultDate, setDefaultDate] = useState('2022-10-01');
   console.log(error)
   const handleChange = (e) => {
     setSelectedDate(e.target.value);
@@ -27,30 +28,35 @@ const DashBoard = () => {
     setError(null); // Reset any previous errors
 
     // fetch('https://api.nasa.gov/planetary/earth/assets?lon=-95.33&lat=29.78&date=2018-01-01&&dim=0.10&api_key=FtfiZfngOtmebhriKXOE6gsrt3lCqBr70jWnu57A')
-    fetch(`https://api.nasa.gov/EPIC/api/natural/date/${submittedDate}?api_key=FtfiZfngOtmebhriKXOE6gsrt3lCqBr70jWnu57A`)
+    fetch(`https://api.nasa.gov/EPIC/api/natural/date/${defaultDate}?api_key=FtfiZfngOtmebhriKXOE6gsrt3lCqBr70jWnu57A`)
       .then((res) => {
         if (!res.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('Network was not response...');
         }
         return res.json();
       })
       .then((data) => {
         // console.log("data: ", data);
         setData(data)
+        toast.success("Data found...")
         setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
         setLoading(false);
+        
         setError(error.message); // Set the error state
       });
 
 
-  }, [submittedDate])
+  }, [defaultDate])
 
   const singleData = data?.[count]
   let arrayLength = data?.length;
 
+  if(error){
+    toast.error(error)
+  }
 
 
   const handleImages = (date, image) => {
@@ -70,13 +76,14 @@ const DashBoard = () => {
     fetch(`https://api.nasa.gov/EPIC/api/natural/date/${submittedDate}?api_key=FtfiZfngOtmebhriKXOE6gsrt3lCqBr70jWnu57A`)
       .then((res) => {
         if (!res.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('Network was not response...');
         }
         return res.json();
       })
       .then((data) => {
         // console.log("data: ", data);
         setData(data)
+        toast.success('Data found');
         setLoading(false);
       })
       .catch((error) => {
@@ -107,7 +114,7 @@ const DashBoard = () => {
 
 
       <section className='max-w-screen-xl mx-auto py-20'>
-        <div className='bg-black px-10 opacity-90 rounded-t-3xl border-b-[1px] border-dashed'>
+        <div className='bg-black px-10 opacity-90 rounded-t-3xl border-b-[1px] border-das'>
           <p className='text-4xl font-semibold py-2 text-white pt-10'>Earth Data</p>
 
 
@@ -243,7 +250,7 @@ const DashBoard = () => {
                 <div className='flex flex-col justify-center items-center py-20'>
                   <p className='text-center text-3xl  text-white font-semibold'>No Data Found <br /> Please put the valid date...</p>
 
-                  <button onClick={() => setSubmittedDate('2023-10-01')} className='text-xl bg-green-500 p-3 font-bold text-white rounded  mt-10'>Previous Page</button>
+                  <button onClick={() => setDefaultDate('2022-10-01')} className='text-xl bg-green-500 p-3 font-bold text-white rounded  mt-10'>Previous Page</button>
 
                 </div>
 
