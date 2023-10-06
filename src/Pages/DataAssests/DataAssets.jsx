@@ -163,7 +163,7 @@ const DataAssets = () => {
         >
 
             <section className='max-w-screen-xl mx-auto py-20 '>
-                <div className='bg-gray-950 py-20 px-10 opacity-90 rounded-3xl'>
+                <div className='bg-gray-900 py-20 px-10 opacity-90 rounded-3xl'>
 
                     <p className='text-4xl font-bold text-white'>Data Set</p>
 
@@ -212,12 +212,12 @@ const DataAssets = () => {
                                 </div>
                                 :
                                 <div className="mb-4 my-auto">
-                                    <button
+                                    <p
 
                                         className="bg-blue-300 disabled  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                     >
                                         Submit
-                                    </button>
+                                    </p>
                                 </div>
 
                         }

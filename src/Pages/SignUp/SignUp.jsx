@@ -15,7 +15,7 @@ const SignUp = () => {
     const from = location.state?.from?.pathname || "/";
 
     const [signUpError, setSignUPError] = useState("");
-    const [createdUserEmail, setCreatedUserEmail] = useState("");
+    // const [createdUserEmail, setCreatedUserEmail] = useState("");
 
 
     const { createUser, updateUser, signUpWitGoogle, loading, setLoading } = useContext(AuthContext);
@@ -36,7 +36,7 @@ const SignUp = () => {
                 };
                 updateUser(userInfo)
                     .then(() => {
-                        setCreatedUserEmail(data.email);
+                        // setCreatedUserEmail(data.email);
                         setLoading(false);
                         toast.success("Login Successfully");
                         navigate('/');
@@ -102,7 +102,7 @@ const SignUp = () => {
                 const user = result.user;
                 // console.log(user.email)
 
-                setCreatedUserEmail(user.email);
+                // setCreatedUserEmail(user.email);
                 setLoading(false);
                 toast.success("Login Successfully");
                 navigate('/')

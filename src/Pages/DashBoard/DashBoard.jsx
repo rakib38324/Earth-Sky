@@ -107,7 +107,7 @@ const DashBoard = () => {
 
 
       <section className='max-w-screen-xl mx-auto py-20'>
-        <div className='bg-black px-10 opacity-90 rounded-t-3xl'>
+        <div className='bg-black px-10 opacity-90 rounded-t-3xl border-b-[1px] border-dashed'>
           <p className='text-4xl font-semibold py-2 text-white pt-10'>Earth Data</p>
 
 
@@ -217,7 +217,7 @@ const DashBoard = () => {
 
                             {
                               imgUrl ?
-                                <img className='w-2/3 mx-auto' src={imgUrl} />
+                                <img className='w-2/3 mx-auto' src={imgUrl} alt='World'/>
                                 :
                                 <img className='w-2/3 mx-auto' src={`https://epic.gsfc.nasa.gov/archive/natural/${singleData?.date.slice(0, 4)}/${singleData?.date.slice(5, 7)}/${singleData?.date.slice(8, 10)}/png/${singleData?.image}.png`} />
                             }
