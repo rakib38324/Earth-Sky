@@ -153,13 +153,36 @@ const Analysis = () => {
     }
   };
 
+  // const [selectedDate, setSelectedDate] = useState(new Date());
+ // Get the current date
+const currentDate = new Date();
+
+// Calculate the date 5 days in the future
+const futureDate = new Date(currentDate);
+futureDate.setDate(currentDate.getDate() - 5);
+
+// Format the dates as strings (in "YYYY-MM-DD" format)
+const currentDateString = formatDate(currentDate);
+const futureDateString = formatDate(futureDate);
+
+console.log("Current Date:", currentDateString);
+console.log("Future Date (5 days from now):", futureDateString);
+
+function formatDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
   useEffect(() => {
+    
     if (!startDate && !endDate) {
       setLoading(true);
       setError(null);
 
       fetch(
-        `https://api.nasa.gov/planetary/apod?start_date=2023-01-01&end_date=2023-01-05&api_key=FtfiZfngOtmebhriKXOE6gsrt3lCqBr70jWnu57A`
+        `https://api.nasa.gov/planetary/apod?start_date=${futureDateString}&end_date=${currentDateString}&api_key=FtfiZfngOtmebhriKXOE6gsrt3lCqBr70jWnu57A`
       )
         .then((res) => {
           if (!res.ok) {
@@ -178,7 +201,7 @@ const Analysis = () => {
           setError(error.message); // Set the error state
         });
     }
-  }, [startDate, endDate]);
+  }, [startDate, endDate,currentDateString,futureDateString]);
 
   
   return (
@@ -191,7 +214,7 @@ const Analysis = () => {
 
         <div className="bg-white px-10 opacity-90 rounded-lg py-10 mb-1">
           <p className="text-4xl font-bold text-white">Education</p>
-          <div className="grid grid-cols-4 gap-2 mt-5 rounded-md">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2 mt-5 rounded-md">
             {
             Articel.map((art,index) => (
               <div 
@@ -292,6 +315,7 @@ const Analysis = () => {
             </p>
           ) : dateWithData?.length > 0 ? (
             <div>
+              <p className="text-center text-3xl text-white my-20 font-bold">{startDate} Astronomy Picture to {endDate}</p>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {dateWithData?.length &&
                   dateWithData?.map((element, index) => (
@@ -397,7 +421,7 @@ const Analysis = () => {
           <div className="modal-action">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
-              <button className="btn">Close</button>
+              <button onClick={()=> setIndex('')} className="btn">Close</button>
             </form>
           </div>
         </div>
@@ -436,7 +460,7 @@ const Analysis = () => {
           <div className="modal-action">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
-              <button className="btn">Close</button>
+              <button onClick={()=>setIndex2('')} className="btn">Close</button>
             </form>
           </div>
         </div>
