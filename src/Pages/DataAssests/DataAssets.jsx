@@ -15,9 +15,10 @@ const DataAssets = () => {
   const [endDate, setEndDate] = useState("");
   const [buttonActive, setButtonActive] = useState(false);
   const [buttonDate, setButtonDate] = useState("");
-  if(error){
-    toast.error(error);
-  }
+//   if(error){
+//     toast.error(error);
+//   }
+console.log(error)
 
   let closeApproachLength = singleData?.close_approach_data?.length;
   let dayLength = endDate.slice(8, 10) - startDate.slice(8, 10);
@@ -65,7 +66,7 @@ const DataAssets = () => {
           return res.json();
         })
         .then((data) => {
-          // console.log("data: ", data);
+          console.log("data: ", data);
           setDateWithData(data);
           setLoading(false);
         })
@@ -73,6 +74,7 @@ const DataAssets = () => {
           console.error("Error fetching data:", error);
           setLoading(false);
           setError(error.message); // Set the error state
+          toast.error(error)
         });
     }
   };

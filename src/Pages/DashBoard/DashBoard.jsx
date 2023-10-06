@@ -17,17 +17,19 @@ const DashBoard = () => {
   const [submittedDate, setSubmittedDate] = useState('2022-10-01');
   const [defaultDate, setDefaultDate] = useState('2022-10-01');
   console.log(error)
+  // console.log('last2',submittedDate)
   const handleChange = (e) => {
     setSelectedDate(e.target.value);
   };
+ 
 
-
-
+  // console.log(defaultDate)
+  
   useEffect(() => {
     setLoading(true);
     setError(null); // Reset any previous errors
 
-    // fetch('https://api.nasa.gov/planetary/earth/assets?lon=-95.33&lat=29.78&date=2018-01-01&&dim=0.10&api_key=FtfiZfngOtmebhriKXOE6gsrt3lCqBr70jWnu57A')
+    
     fetch(`https://api.nasa.gov/EPIC/api/natural/date/${defaultDate}?api_key=FtfiZfngOtmebhriKXOE6gsrt3lCqBr70jWnu57A`)
       .then((res) => {
         if (!res.ok) {
@@ -36,10 +38,11 @@ const DashBoard = () => {
         return res.json();
       })
       .then((data) => {
-        // console.log("data: ", data);
+        console.log("defoult data: ", data);
         setData(data)
-        toast.success("Data found...")
+        toast.success("Data found successfully...")
         setLoading(false);
+        setDefaultDate('')
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -54,9 +57,7 @@ const DashBoard = () => {
   const singleData = data?.[count]
   let arrayLength = data?.length;
 
-  if(error){
-    toast.error(error)
-  }
+  
 
 
   const handleImages = (date, image) => {
@@ -65,15 +66,16 @@ const DashBoard = () => {
     setImgUrl(imageUrl)
     setLoading(false)
   }
-
+  
+  console.log('last function22222', submittedDate)
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmittedDate(selectedDate);
-    // console.log('into function', submittedDate)
-
     setLoading(true);
+    console.log(selectedDate)
+    setSubmittedDate(selectedDate);
+   
 
-    fetch(`https://api.nasa.gov/EPIC/api/natural/date/${submittedDate}?api_key=FtfiZfngOtmebhriKXOE6gsrt3lCqBr70jWnu57A`)
+    fetch(`https://api.nasa.gov/EPIC/api/natural/date/${selectedDate}?api_key=FtfiZfngOtmebhriKXOE6gsrt3lCqBr70jWnu57A`)
       .then((res) => {
         if (!res.ok) {
           throw new Error('Network was not response...');
@@ -81,18 +83,21 @@ const DashBoard = () => {
         return res.json();
       })
       .then((data) => {
-        // console.log("data: ", data);
+        console.log("data: ", data);
         setData(data)
-        toast.success('Data found');
+        toast.success('Data found successfully...',data?.length );
         setLoading(false);
+     
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        // console.error("Error fetching data:", error);
+        toast.error('Newtwork error, please try again')
         setLoading(false);
         setError(error.message); // Set the error state
       });
 
   };
+
 
   const handleDownload = () => {
     if (data) {
@@ -165,7 +170,7 @@ const DashBoard = () => {
               <Loading></Loading>
               :
 
-              data?.length > 0 ?
+              data.length > 0 ?
                 <div className='grid lg:grid-cols-12 bg-black'>
 
                   <div className=' lg:col-span-3 border-2 border-black bg-gray-600 shadow-lg shadow-slate-800 rounded-lg m-5'>
@@ -219,6 +224,29 @@ const DashBoard = () => {
                       {
                         loading === true ?
                           <Loading></Loading>
+                          :
+                          data ?
+
+                          <div className="carousel-item relative w-full">
+
+                            {
+                              imgUrl ?
+                                <img className='w-2/3 mx-auto' src={imgUrl} alt='World'/>
+                                :
+                                <img className='w-2/3 mx-auto' src={`https://epic.gsfc.nasa.gov/archive/natural/${singleData?.date.slice(0, 4)}/${singleData?.date.slice(5, 7)}/${singleData?.date.slice(8, 10)}/png/${singleData?.image}.png`} />
+                            }
+                            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                              <p onClick={() => handleImages(singleData?.date, singleData?.image)}>
+                                <p onClick={() => count === 0 ? setCount(arrayLength - 1) : setCount(count - 1)} className="btn btn-circle">❮</p>
+                              </p>
+
+
+                              <p onClick={() => handleImages(singleData?.date, singleData?.image)}>
+
+                                <p onClick={() => count === arrayLength - 1 ? setCount(0) : setCount(count + 1)} className="btn btn-circle">❯</p>
+                              </p>
+                            </div>
+                          </div>
                           :
                           <div className="carousel-item relative w-full">
 
