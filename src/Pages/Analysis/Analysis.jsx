@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import background from "../../assets/nasa3.png";
 import image1 from "./images/result1.jpeg";
 import image2 from "./images/result2.jpeg";
@@ -22,6 +23,12 @@ const Analysis = () => {
             predict the conditions of the atmosphere for a given location and
             time.
           </p>
+
+          <Link target="_blank" to='https://earth.jpl.nasa.gov/emit/data/data-portal/coverage-and-forecasts/'>
+            <p className="text-white text-2xl my-10 p-2 bg-blue-600 lg:w-1/4 text-center cursor-pointer rounded-xl hover:bg-green-400 hover:text-black">
+              Live Wather Forcast
+            </p>
+          </Link>
 
           <section className="my-10">
             <p className="text-white text-sm">
