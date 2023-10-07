@@ -180,7 +180,7 @@ const DashBoard = () => {
       className="relative h-full !bg-no-repeat !bg-center !bg-cover"
     >
       <section className="max-w-screen-xl mx-auto py-20">
-        <div className="bg-black px-10 opacity-90 rounded-t-3xl border-b-[1px] border-das">
+        <div className="bg-black px-10 opacity-90 rounded-t-3xl border-b-[1px] border-das pb-10">
           <p className="text-4xl font-semibold py-2 text-white pt-10">
             Earth Data
           </p>
@@ -188,15 +188,28 @@ const DashBoard = () => {
           <div className="grid md:grid-cols-12 gap-10">
             <div className="md:col-span-8">
               <div className="md:flex gap-4 text-blue-600 py-5">
-                <p className="hover:font-semibold cursor-pointer">EOSDIS</p>
+                <Link to="/eosdis">
+                  <p className="hover:font-semibold cursor-pointer">EOSDIS</p>
+                </Link>
                 <p className="hidden md:block border-[1px]"></p>
-                <p className="hover:font-semibold cursor-pointer">
-                  EOSDIS Worldview
-                </p>
+
+                <Link
+                  target="_blank"
+                  to="https://worldview.earthdata.nasa.gov/"
+                >
+                  {" "}
+                  <p className="hover:font-semibold cursor-pointer">
+                    EOSDIS Worldview
+                  </p>
+                </Link>
+
                 <p className="hidden md:block border-[1px]"></p>
-                <p className="hover:font-semibold cursor-pointer">
-                  Nasa Earth Observatory
-                </p>
+
+                <Link to="/nasaEarthScience">
+                  <p className="hover:font-semibold cursor-pointer">
+                    Nasa Earth Science
+                  </p>
+                </Link>
               </div>
 
               <p className="text-justify text-white">
@@ -212,10 +225,6 @@ const DashBoard = () => {
                 launching missions, analyzing the data, and calibrating and
                 validating results to ensure that the information is accurate.
               </p>
-
-              <p className="text-center cursor-pointer font-semibold py-5 text-white">
-                See more
-              </p>
             </div>
 
             <div className="md:col-span-4">
@@ -223,26 +232,37 @@ const DashBoard = () => {
                 Earth Science Focus Areas{" "}
               </p>
 
-              <p className="text-blue-600 cursor-pointer hover:font-semibold">
-                <span className="text-green-600 text-2xl">›</span> Atmospheric
-                Composition
-              </p>
-              <p className="text-blue-600 cursor-pointer hover:font-semibold">
-                <span className="text-green-600 text-2xl">›</span> Weather and
-                Atmospheric Dynamics{" "}
-              </p>
-              <p className="text-blue-600 cursor-pointer hover:font-semibold">
-                <span className="text-green-600 text-2xl">›</span> Climate
-                Variability and Change
-              </p>
-              <p className="text-blue-600 cursor-pointer hover:font-semibold">
-                <span className="text-green-600 text-2xl">›</span> Water and
-                Energy Cycle
-              </p>
-              <p className="text-blue-600 cursor-pointer hover:font-semibold">
-                <span className="text-green-600 text-2xl">›</span> Carbon Cycle
-                and Ecosystems
-              </p>
+              <Link to="/astronomical">
+                <p className="text-blue-600 cursor-pointer hover:font-semibold">
+                  <span className="text-green-600 text-2xl">›</span> Atmospheric
+                  Composition
+                </p>
+              </Link>
+
+              <Link to="/weather">
+                <p className="text-blue-600 cursor-pointer hover:font-semibold">
+                  <span className="text-green-600 text-2xl">›</span> Weather and
+                  Atmospheric Dynamics{" "}
+                </p>
+              </Link>
+              <Link to="/climate">
+                <p className="text-blue-600 cursor-pointer hover:font-semibold">
+                  <span className="text-green-600 text-2xl">›</span> Climate
+                  Variability and Change
+                </p>
+              </Link>
+              <Link to="/waterandEnergyCycle">
+                <p className="text-blue-600 cursor-pointer hover:font-semibold">
+                  <span className="text-green-600 text-2xl">›</span> Water and
+                  Energy Cycle
+                </p>
+              </Link>
+              <Link to='/carbon'>
+                <p className="text-blue-600 cursor-pointer hover:font-semibold">
+                  <span className="text-green-600 text-2xl">›</span> Carbon
+                  Cycle and Ecosystems
+                </p>
+              </Link>
             </div>
           </div>
         </div>
@@ -488,9 +508,9 @@ const DashBoard = () => {
         </div>
 
         <div className="bg-black py-20 opacity-90 rounded-b-3xl">
-        <p className="text-4xl font-semibold py-2 text-white pt-10 pl-10">
-              Article
-            </p>
+          <p className="text-4xl font-semibold py-2 text-white pt-10 pl-10">
+            Article
+          </p>
           <div className="grid lg:grid-cols-4 mt-5 gap-2 rounded-md">
             {Articel.map((art, index) => (
               <div
